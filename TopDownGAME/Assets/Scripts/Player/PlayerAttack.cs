@@ -25,9 +25,6 @@ public class PlayerAttack : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
-
-
-            Debug.Log("Hello");
             AttackTime = StartAttackTime;
             Collider2D[] DamageEnemies = Physics2D.OverlapCircleAll(AttackPos.position, AttackRange, EnemyFinder);
             

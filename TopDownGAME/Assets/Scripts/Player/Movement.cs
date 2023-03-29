@@ -5,7 +5,10 @@ using UnityEngine;
 
 public class Movement : MonoBehaviour
 {
-  //  private bool CanDamaged = false;
+    //  private bool CanDamaged = false;
+  public int Health = 100;
+  public int CurrentHealth;
+  public HealthBar healthBar;
   public float Speed;
   private float CurrentSpeed;
   public Rigidbody2D rbPlayer;
@@ -22,7 +25,6 @@ public class Movement : MonoBehaviour
   private float DashCounter;
   private float DashCooldownCounter;
 
-  public float Health = 100;
 
   public GameObject RedEnemy;
   public GameObject ShootEnemy;
@@ -33,6 +35,8 @@ public class Movement : MonoBehaviour
   {
     rbPlayer = GetComponent<Rigidbody2D>();
     CurrentSpeed = Speed;
+    CurrentHealth = Health;
+    healthBar.SetMaxHealth(Health);
   }
 
   void Update()
@@ -113,8 +117,9 @@ public class Movement : MonoBehaviour
     {
       ShootEnemy = GameObject.Find("EnemyShoot");
       int BlueDamage = ShootEnemy.GetComponent<EnemyShootMovement>().BlueTouchDamage;
-      Health -= BlueDamage;
-      if (Health <= 0) // Feature de last stande?: (Health < 0) Hace que tenga 0 pero aun asi se pueda mover, pero se muere al siguente golpe
+      CurrentHealth -= BlueDamage;
+      healthBar.HealthDisplay(CurrentHealth);
+      if (CurrentHealth <= 0) // Feature de last stande?: (Health < 0) Hace que tenga 0 pero aun asi se pueda mover, pero se muere al siguente golpe
       {
         Destroy(gameObject);
       }
@@ -123,8 +128,9 @@ public class Movement : MonoBehaviour
     {
       RedEnemy = GameObject.Find("Enemy");
       int RedDamage = RedEnemy.GetComponent<EnemyMovement>().TouchDamage;
-      Health -= RedDamage;
-      if (Health <= 0)
+      CurrentHealth -= RedDamage;
+      healthBar.HealthDisplay(CurrentHealth);
+      if (CurrentHealth <= 0)
       {
         Destroy(gameObject);
 
@@ -134,12 +140,12 @@ public class Movement : MonoBehaviour
     if (collision.gameObject.tag == "EnemyShootBullet")
     {
       EnemyShootBullet = GameObject.FindWithTag("EnemyShootBullet");
-      gameObject.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
-    //  Debug.Log("CHANGE BODYTYPE");
-      gameObject.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
+      gameObject.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;    //Eliminate EnemyShootBullet aplied Force by reseting the body´s state
+      gameObject.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;   //Eliminate EnemyShootBullet aplied Force by reseting the body´s state
       int EnemyShootBulletDamage = EnemyShootBullet.GetComponent<EnemyShootBullet>().Damage;
-      Health -= EnemyShootBulletDamage;
-      if (Health <= 0)
+      CurrentHealth -= EnemyShootBulletDamage;
+      healthBar.HealthDisplay(CurrentHealth);
+      if (CurrentHealth <= 0)
       {
         Destroy(gameObject);
 

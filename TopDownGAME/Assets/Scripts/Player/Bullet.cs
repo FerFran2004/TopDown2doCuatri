@@ -24,11 +24,8 @@ public class Bullet : MonoBehaviour
     {
         if (collision.collider.gameObject.tag == "EnemiesShoot") 
         {
-            // EnemyShootHealth = GameObject.FindWithTag("EnemiesShoot");                  //Bajarle vida al objetivo al que se le esta disparando
-            // EnemyShootHealth.GetComponent<EnemyShootMovement>().TakeDamage(Damage);     //Bajarle vida al objetivo al que se le esta disparando
             collision.gameObject.GetComponent<EnemyShootMovement>().TakeDamage(Damage);
             Destroy(this.gameObject);
-            Debug.Log("HIT THE TARGET");
         }
 
         if (collision.gameObject.tag == "Wall")

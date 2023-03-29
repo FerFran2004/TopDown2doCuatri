@@ -8,6 +8,7 @@ public class EnemyMovement : MonoBehaviour
     public int Health = 100;
     public int TouchDamage = 10;
     public float Speed;
+    public int EnergyReward = 10;
 
     //Random numbers for movement
     public float MoveTime;
@@ -20,6 +21,7 @@ public class EnemyMovement : MonoBehaviour
     
     public GameObject PlayerEnergy;
 
+    private GameObject[] PlayerGuns;
     Vector3 Direction;
     private float CurrentMoveTime;
     int currentHealth;
@@ -40,8 +42,11 @@ public class EnemyMovement : MonoBehaviour
         if (currentHealth < 0)
         {
             Debug.Log("The enemy is dead");
-            PlayerEnergy = GameObject.FindWithTag("Gun");
-            PlayerEnergy.GetComponent<Gun>().FillEnergy(10);
+            PlayerGuns = GameObject.FindGameObjectsWithTag("Gun");
+            foreach (GameObject gun in PlayerGuns)
+            {
+                gun.GetComponent<Gun>().FillEnergy(EnergyReward);    
+            }
             Destroy(gameObject);
 
         }

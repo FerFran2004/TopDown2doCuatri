@@ -19,7 +19,6 @@ public class EnemyShootMovement : MonoBehaviour
 
         if (currentHealth < 0)
         {
-            Debug.Log("The shoot enemy is dead");
             Destroy(gameObject);
 
         }

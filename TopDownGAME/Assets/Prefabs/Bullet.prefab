@@ -136,6 +136,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53365a6a33f043447808c4bde21b38ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Damage: 5
+  Damage: 3
   EnemyShootHealth: {fileID: 0}
   distance: 0.5
