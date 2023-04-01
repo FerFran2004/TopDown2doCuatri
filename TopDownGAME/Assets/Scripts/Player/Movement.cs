@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Dynamic;
 using UnityEngine;
+using static UnityEditor.Experimental.GraphView.GraphView;
 
 public class Movement : MonoBehaviour
 {
@@ -78,8 +79,8 @@ public class Movement : MonoBehaviour
 
 
     transform.position += Direction * CurrentSpeed * Time.deltaTime;
-    
-    
+    //Physics.IgnoreLayerCollision(layerA, layerB, true) TRUE = Ingora, False = No Ignora
+
     //Dash System
     if (Input.GetKeyDown(KeyCode.Space))
     {
