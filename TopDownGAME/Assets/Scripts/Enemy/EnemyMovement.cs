@@ -30,8 +30,6 @@ public class EnemyMovement : MonoBehaviour
     void Start()
     {
         currentHealth = Health;
-       // Speed = Random.Range(0, 1);
-        //Debug.Log(Speed);
     }
 
     public void TakeDamage(int damage)
@@ -92,17 +90,29 @@ public class EnemyMovement : MonoBehaviour
             RandomDirX *= -1;
             RandomDirY *= -1;
         }
+        if (collision.gameObject.tag == "EnemiesShoot")
+        {
+            RandomDirX *= -1;
+            RandomDirY *= -1;
+        }
+
         if (collision.gameObject.tag == "Player")
         {
-
             gameObject.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
+        }
+    }
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Player")
+        {
             gameObject.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
         }
+
     }
 
 
     //Moverlo por ints o moverlo hacia un gameobject vacio con una posicion
-  
+
 
 
 }

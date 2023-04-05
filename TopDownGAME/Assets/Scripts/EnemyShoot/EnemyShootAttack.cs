@@ -25,6 +25,8 @@ public class EnemyShootAttack : MonoBehaviour
             {
                 Instantiate(Bullet, BulletPos.position, Quaternion.identity);
                 ReadyToFire = 0;
+                FireRate = Random.Range(0.4f, 1); //0.5, 0.6, 0.7, 0.8, 0.9, 1
+                Debug.Log(FireRate);
 
             }
 

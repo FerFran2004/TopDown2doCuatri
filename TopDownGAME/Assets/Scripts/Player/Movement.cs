@@ -2,12 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Dynamic;
 using UnityEngine;
+using UnityEngine.UI;
 using static UnityEditor.Experimental.GraphView.GraphView;
 
 public class Movement : MonoBehaviour
 {
     //  private bool CanDamaged = false;
   public int Health = 100;
+  public Text HealthText;
   public int CurrentHealth;
   public HealthBar healthBar;
   public float Speed;
@@ -44,6 +46,10 @@ public class Movement : MonoBehaviour
   {
 
 
+
+    //Health number display 
+    HealthText.text = CurrentHealth.ToString() + "%";
+
     //Look at Mouse
     var MouseDir = Input.mousePosition - Camera.main.WorldToScreenPoint(transform.position);
     var Angle = Mathf.Atan2(MouseDir.x, MouseDir.y) * Mathf.Rad2Deg * angleOffset;
@@ -77,9 +83,14 @@ public class Movement : MonoBehaviour
       }
     }
 
-
     transform.position += Direction * CurrentSpeed * Time.deltaTime;
     //Physics.IgnoreLayerCollision(layerA, layerB, true) TRUE = Ingora, False = No Ignora
+
+    if (Input.GetKeyDown(KeyCode.K))
+    {
+            CurrentHealth = 0;
+    }
+
 
     //Dash System
     if (Input.GetKeyDown(KeyCode.Space))
@@ -104,11 +115,16 @@ public class Movement : MonoBehaviour
     }
     else
     {
-
+       
     }
     if (DashCooldownCounter > 0)
     {
       DashCooldownCounter -= Time.deltaTime; //Se va restando poco a poco
+    }
+    //If dead
+    if (CurrentHealth == 0)
+    {
+        Destroy(gameObject);
     }
 
   }

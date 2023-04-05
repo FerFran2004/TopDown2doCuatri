@@ -41,7 +41,7 @@ public class Gun : MonoBehaviour
                 if (Energy <= 0)
                 {
                     Debug.Log("No Energy: " + Energy);
-
+                    
                 }
 
 

@@ -25,7 +25,7 @@ public class Bullet : MonoBehaviour
         if (collision.collider.gameObject.tag == "EnemiesShoot") 
         {
             collision.gameObject.GetComponent<EnemyShootMovement>().TakeDamage(Damage);
-            Destroy(this.gameObject);
+
         }
 
         if (collision.gameObject.tag == "Wall")
