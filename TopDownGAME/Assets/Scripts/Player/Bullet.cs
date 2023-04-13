@@ -6,7 +6,7 @@ public class Bullet : MonoBehaviour
 {
     public int Damage;
     public GameObject EnemyShootHealth;
-   // public LayerMask ShootEnemy;
+   
     public float distance;
 
     void Start()
@@ -14,7 +14,7 @@ public class Bullet : MonoBehaviour
         
     }
 
-    // Update is called once per frame
+    
     void Update()
     {
 
@@ -25,6 +25,7 @@ public class Bullet : MonoBehaviour
         if (collision.collider.gameObject.tag == "EnemiesShoot") 
         {
             collision.gameObject.GetComponent<EnemyShootMovement>().TakeDamage(Damage);
+            Destroy(gameObject);
 
         }
 

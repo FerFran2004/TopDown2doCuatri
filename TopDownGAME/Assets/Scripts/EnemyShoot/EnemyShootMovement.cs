@@ -4,10 +4,15 @@ using UnityEngine;
 
 public class EnemyShootMovement : MonoBehaviour
 {
+    //Basic Aspects
     public int Health = 150;
     public int BlueTouchDamage = 20;
-
     public float Speed;
+    public int ScoreReward = 20;
+
+    private int currentHealth;
+    
+    //For movement 
     public float MoveTime;
     private float CurrentMoveTime;
     public float MaxX = 16f;
@@ -18,8 +23,12 @@ public class EnemyShootMovement : MonoBehaviour
     public float RandomDirY;
     Vector3 Direction;
 
+    
     private GameObject PlayerBullet;
-    private int currentHealth;
+
+    //For Players´ Score
+    public GameObject PlayerScore;
+    
     void Start()
     {
         currentHealth= Health;
@@ -32,6 +41,8 @@ public class EnemyShootMovement : MonoBehaviour
 
         if (currentHealth < 0)
         {
+            PlayerScore = GameObject.FindGameObjectWithTag("Player");
+            PlayerScore.GetComponent<Score>().ScoreCount(ScoreReward);
             Destroy(gameObject);
 
         }
@@ -76,15 +87,15 @@ public class EnemyShootMovement : MonoBehaviour
             RandomDirX *= -1;
             RandomDirY *= -1;
         }
-        if (collision.gameObject.tag == "Player")
-        {
-            gameObject.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
-        }
-        if (collision.gameObject.tag == "PlayerBullet")
-        {
-            gameObject.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
-
-        }
+        //if (collision.gameObject.tag == "Player")
+        //{
+        //    gameObject.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
+        //}
+        //if (collision.gameObject.tag == "PlayerBullet")
+        //{
+        //    gameObject.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
+        //
+        //}
 
     }
     private void OnCollisionExit2D(Collision2D collision)
@@ -93,7 +104,10 @@ public class EnemyShootMovement : MonoBehaviour
         {
             gameObject.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
         }
+        if (collision.gameObject.tag == "PlayerBullet")
+        {
+            gameObject.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
 
-
+        }
     }
 }

@@ -2,14 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class EnemyMovement : MonoBehaviour
 {
+    //Basic Aspects
     public int Health = 100;
     public int TouchDamage = 10;
     public float Speed;
     public int EnergyReward = 10;
+    public int ScoreReward = 10;
 
+    int currentHealth;
+    
     //Random numbers for movement
     public float MoveTime;
     public float MaxX = 16f;
@@ -19,27 +24,37 @@ public class EnemyMovement : MonoBehaviour
     public float RandomDirX;
     public float RandomDirY;
     
-    public GameObject PlayerEnergy;
-
-    private GameObject[] PlayerGuns;
+     
     Vector3 Direction;
     private float CurrentMoveTime;
-    int currentHealth;
+    
+    //For Players´ Gun recharge 
+    public GameObject PlayerEnergy;
+    private GameObject[] PlayerGuns;
+
+    //For Players´ Score
+    public GameObject PlayerScore;
+    
 
 
     void Start()
     {
         currentHealth = Health;
+        
+       
     }
 
     public void TakeDamage(int damage)
     {
+
         Physics.SyncTransforms();
         currentHealth -= damage;
 
         if (currentHealth < 0)
         {
             Debug.Log("The enemy is dead");
+            PlayerScore = GameObject.FindGameObjectWithTag("Player");
+            PlayerScore.GetComponent<Score>().ScoreCount(ScoreReward);
             PlayerGuns = GameObject.FindGameObjectsWithTag("Gun");
             foreach (GameObject gun in PlayerGuns)
             {
@@ -54,6 +69,7 @@ public class EnemyMovement : MonoBehaviour
 
     void Update()
     {
+        
         //Changing Direction a certain time period
         if (MoveTime <= 0) 
         {
