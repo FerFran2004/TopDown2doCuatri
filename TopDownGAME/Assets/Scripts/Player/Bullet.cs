@@ -20,14 +20,14 @@ public class Bullet : MonoBehaviour
 
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnCollisionEnter2D(Collision2D collision) //OnTriggerEnter
     {
-        if (collision.collider.gameObject.tag == "EnemiesShoot") 
-        {
-            collision.gameObject.GetComponent<EnemyShootMovement>().TakeDamage(Damage);
-            Destroy(gameObject);
-
-        }
+        //if (collision.collider.gameObject.tag == "EnemiesShoot") 
+        //{
+        //    collision.gameObject.GetComponent<EnemyShootMovement>().TakeDamage(Damage);
+        //    Destroy(gameObject);
+        //
+        //}
 
         if (collision.gameObject.tag == "Wall")
         {
@@ -35,5 +35,15 @@ public class Bullet : MonoBehaviour
 
         }
  
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "EnemiesShoot")
+        {
+            collision.gameObject.GetComponent<EnemyShootMovement>().TakeDamage(Damage);
+            Debug.Log("Damage");
+            Destroy(gameObject);
+
+        }
     }
 }

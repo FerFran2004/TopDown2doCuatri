@@ -82,11 +82,11 @@ public class EnemyShootMovement : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
 
-        if (collision.gameObject.tag == "Wall")
-        {
-            RandomDirX *= -1;
-            RandomDirY *= -1;
-        }
+       // if (collision.gameObject.tag == "Wall")
+       // {
+       //     RandomDirX *= -1;
+       //     RandomDirY *= -1;
+       // }
         //if (collision.gameObject.tag == "Player")
         //{
         //    gameObject.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
@@ -98,16 +98,12 @@ public class EnemyShootMovement : MonoBehaviour
         //}
 
     }
-    private void OnCollisionExit2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Player")
+        if (collision.gameObject.tag == "Wall")
         {
-            gameObject.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
-        }
-        if (collision.gameObject.tag == "PlayerBullet")
-        {
-            gameObject.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
-
+            RandomDirX *= -1;
+            RandomDirY *= -1;
         }
     }
 }

@@ -1,0 +1,13 @@
+COMBO SYSTEM
+
+CAMBIAR MECANICAS:
+-Melee sirve para parry y tocar los enemigos rojos te deja la energia sin necesidad de golpearlos
+
+POWER UPS:
+-Balas mas poderosas
+-Super estrella de mario (destruyes todo lo que tocas)
+-Rebotar por las paredes y destruir lo que tocas (como una bola de pinball)
+
+ENEMIGOS:
+-Misiles: Aparecen y lockean al personaje en x segundos. Se quedan quietos durante ese lock y luego van a la posicion del jugador rapidamente
+-
