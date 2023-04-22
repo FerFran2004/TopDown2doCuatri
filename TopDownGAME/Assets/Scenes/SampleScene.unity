@@ -346,7 +346,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -525,7 +525,6 @@ GameObject:
   - component: {fileID: 529931259}
   - component: {fileID: 529931258}
   - component: {fileID: 529931261}
-  - component: {fileID: 529931257}
   - component: {fileID: 529931263}
   - component: {fileID: 529931262}
   - component: {fileID: 529931256}
@@ -558,18 +557,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &529931257
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 529931254}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e4e3867a8c42c1e4b9ce84638a9eb813, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!212 &529931258
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -704,7 +691,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   AttackRange: 1
-  Damage: 100
+  Damage: 110
 --- !u!114 &529931262
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1035,7 +1022,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -1560,6 +1547,7 @@ MonoBehaviour:
   EnemyShootPrefab: {fileID: 3932631469871084422, guid: 2fd4c68442d27744e8b8358f859f850d, type: 3}
   EnemySpawnRate: 1
   EnemyShootSpawnRate: 5
+  EnemiesTotalLimit: 20
   EnemiesShootTotalLimit: 5
 --- !u!4 &1193209394
 Transform:
@@ -1981,7 +1969,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -2358,6 +2346,7 @@ MonoBehaviour:
   EnemyShootPrefab: {fileID: 3932631469871084422, guid: 2fd4c68442d27744e8b8358f859f850d, type: 3}
   EnemySpawnRate: 1
   EnemyShootSpawnRate: 5
+  EnemiesTotalLimit: 20
   EnemiesShootTotalLimit: 5
 --- !u!4 &1654515447
 Transform:
@@ -2673,7 +2662,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -2836,6 +2825,7 @@ MonoBehaviour:
   EnemyShootPrefab: {fileID: 3932631469871084422, guid: 2fd4c68442d27744e8b8358f859f850d, type: 3}
   EnemySpawnRate: 1
   EnemyShootSpawnRate: 5
+  EnemiesTotalLimit: 20
   EnemiesShootTotalLimit: 5
 --- !u!1 &1973667422
 GameObject:
@@ -2900,7 +2890,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Speed: 7
   DashSpeed: 15
-  DashTime: 0.2
+  DashTime: 0.3
   DashCooldown: 0.1
 --- !u!4 &2023696757
 Transform:

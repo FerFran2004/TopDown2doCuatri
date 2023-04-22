@@ -15,10 +15,9 @@ public class PlayerStats : MonoBehaviour
     public Rigidbody2D rbPlayer;
     public Gun weapon;
 
-    public GameObject RedEnemy;
-    public GameObject ShootEnemy;
-    public GameObject EnemyShootBullet;
-
+    [SerializeField] private GameObject RedEnemy;
+    [SerializeField] private GameObject ShootEnemy;
+    [SerializeField] private GameObject EnemyShootBullet;
 
     // Start is called before the first frame update
     void Start()
@@ -109,22 +108,7 @@ public class PlayerStats : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Enemies")
-        {
-            Debug.Log("ENEMIGO ROJO");
 
-        }
-        //if (collision.gameObject.tag == "EnemiesShoot")
-        //{
-        //    ShootEnemy = GameObject.Find("EnemyShoot");
-        //    int BlueDamage = ShootEnemy.GetComponent<EnemyShootMovement>().BlueTouchDamage;
-        //    CurrentHealth -= BlueDamage;
-        //    healthBar.HealthDisplay(CurrentHealth);
-        //    if (CurrentHealth <= 0) // Feature de last stande?: (Health < 0) Hace que tenga 0 pero aun asi se pueda mover, pero se muere al siguente golpe
-        //    {
-        //        Destroy(gameObject);
-        //    }
-        //}
         if (collision.gameObject.tag == "EnemyShootBullet")
         {
             EnemyShootBullet = GameObject.FindWithTag("EnemyShootBullet");
@@ -140,13 +124,6 @@ public class PlayerStats : MonoBehaviour
         }
 
     }
-
-
-
-
-
-
-
 
 
 }

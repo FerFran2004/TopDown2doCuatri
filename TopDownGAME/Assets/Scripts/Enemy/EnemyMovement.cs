@@ -98,24 +98,15 @@ public class EnemyMovement : MonoBehaviour
   
         
     }
-    //private void OnCollisionEnter2D(Collision2D collision)
-    //{
-    //
-    //    if (collision.gameObject.tag == "EnemiesShoot")
-    //    {
-    //        RandomDirX *= -1;
-    //        RandomDirY *= -1;
-    //    }
-    //
-    //}
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "Wall")
-        { 
-        RandomDirX *= -1;
-        RandomDirY *= -1;
-        }
+    
         if (collision.gameObject.tag == "EnemiesShoot")
+        {
+            RandomDirX *= -1;
+            RandomDirY *= -1;
+        }
+        if (collision.gameObject.tag == "Wall")
         {
             RandomDirX *= -1;
             RandomDirY *= -1;
@@ -123,8 +114,5 @@ public class EnemyMovement : MonoBehaviour
 
     }
     
-    //Moverlo por ints o moverlo hacia un gameobject vacio con una posicion
-
-
 
 }

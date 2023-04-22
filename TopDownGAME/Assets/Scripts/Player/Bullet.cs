@@ -22,13 +22,6 @@ public class Bullet : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision) //OnTriggerEnter
     {
-        //if (collision.collider.gameObject.tag == "EnemiesShoot") 
-        //{
-        //    collision.gameObject.GetComponent<EnemyShootMovement>().TakeDamage(Damage);
-        //    Destroy(gameObject);
-        //
-        //}
-
         if (collision.gameObject.tag == "Wall")
         {
             Destroy(gameObject);

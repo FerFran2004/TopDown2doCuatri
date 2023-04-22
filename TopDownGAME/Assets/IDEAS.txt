@@ -1,7 +1,10 @@
 COMBO SYSTEM
 
+
+
 CAMBIAR MECANICAS:
 -Melee sirve para parry y tocar los enemigos rojos te deja la energia sin necesidad de golpearlos
+-if (CurrentHealth <= 0) // Feature de last stande?: (Health < 0) Hace que tenga 0 pero aun asi se pueda mover, pero se muere al siguente golpe
 
 POWER UPS:
 -Balas mas poderosas
@@ -10,4 +13,3 @@ POWER UPS:
 
 ENEMIGOS:
 -Misiles: Aparecen y lockean al personaje en x segundos. Se quedan quietos durante ese lock y luego van a la posicion del jugador rapidamente
--

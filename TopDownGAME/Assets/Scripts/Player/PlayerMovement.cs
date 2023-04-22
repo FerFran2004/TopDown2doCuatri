@@ -63,8 +63,8 @@ public class PlayerMovement : MonoBehaviour
             {
                 CurrentSpeed = DashSpeed; //Nueva velocidad mientras dure el dash
                 DashCounter = DashTime; //El contador se vuelve el tiempo del Dash
-                gameObject.layer = 8;
-                Debug.Log("DASHING TIME" + Time.deltaTime);
+                //gameObject.transform.Find("Character/Ship");
+                gameObject.transform.GetChild(0).gameObject.layer = 8; //Por numero en la jerarquia
             }
         }
         if (DashCounter > 0)
@@ -75,7 +75,7 @@ public class PlayerMovement : MonoBehaviour
             {
                 CurrentSpeed = Speed;
                 DashCooldownCounter = DashCooldown; //Se resetean la velocidad
-                gameObject.layer = 3;
+                gameObject.transform.GetChild(0).gameObject.layer = 3;
             }
         }
         else

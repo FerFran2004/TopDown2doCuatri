@@ -6,14 +6,16 @@ public class EnemyShootAttack : MonoBehaviour
 {
     public GameObject Bullet;
     public Transform BulletPos;
-    public float FireRate;
+    [SerializeField] private float FireRate;
+    public float FireRateMin;
+    public float FireRateMax;
     public GameObject Player;
-
     private float ReadyToFire;
 
     void Start()
     {
         Player = GameObject.FindWithTag("Player");
+        FireRate = Random.Range(FireRateMin, FireRateMax);
     }
 
     
@@ -25,21 +27,15 @@ public class EnemyShootAttack : MonoBehaviour
             {
                 Instantiate(Bullet, BulletPos.position, Quaternion.identity);
                 ReadyToFire = 0;
-                FireRate = Random.Range(1, 10f); //0.5, 0.6, 0.7, 0.8, 0.9, 1
-                
-
+                FireRate = Random.Range(FireRateMin, FireRateMax);
             }
-
-
             if (ReadyToFire < FireRate)
             {
                 ReadyToFire += Time.deltaTime;
             }
-
         }
         else
         {
-            
 
         }
 
