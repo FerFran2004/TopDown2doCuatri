@@ -55,6 +55,7 @@ public class PlayerStats : MonoBehaviour
 
 
     }
+
     private void OnCollisionEnter2D(Collision2D collision)
 
     {
@@ -89,22 +90,20 @@ public class PlayerStats : MonoBehaviour
             }
 
         }
-        if (collision.gameObject.tag == "EnemyShootBullet")
-        {
-            EnemyShootBullet = GameObject.FindWithTag("EnemyShootBullet");
-            gameObject.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;    //Eliminate EnemyShootBullet aplied Force by reseting the body´s state
-            gameObject.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;   //Eliminate EnemyShootBullet aplied Force by reseting the body´s state
-            int EnemyShootBulletDamage = EnemyShootBullet.GetComponent<EnemyShootBullet>().Damage;
-            CurrentHealth -= EnemyShootBulletDamage;
-            healthBar.HealthDisplay(CurrentHealth);
-            if (CurrentHealth <= 0)
-            {
-                Destroy(gameObject);
-
-            }
-
-        }
-
+//        if (collision.gameObject.tag == "EnemyShootBullet")
+//        {
+//            EnemyShootBullet = GameObject.FindWithTag("EnemyShootBullet");
+//            int EnemyShootBulletDamage = EnemyShootBullet.GetComponent<EnemyShootBullet>().Damage;
+//            CurrentHealth -= EnemyShootBulletDamage;
+//            healthBar.HealthDisplay(CurrentHealth);
+//            if (CurrentHealth <= 0)
+//            {
+//                Destroy(gameObject);
+//
+//            }
+//
+//        }
+//
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -115,6 +114,8 @@ public class PlayerStats : MonoBehaviour
             int EnemyShootBulletDamage = EnemyShootBullet.GetComponent<EnemyShootBullet>().Damage;
             CurrentHealth -= EnemyShootBulletDamage;
             healthBar.HealthDisplay(CurrentHealth);
+            GameObject Me = GameObject.FindWithTag("Player");
+            Me.GetComponent<Score>().ResetCombo();
             if (CurrentHealth <= 0)
             {
                 Destroy(gameObject);

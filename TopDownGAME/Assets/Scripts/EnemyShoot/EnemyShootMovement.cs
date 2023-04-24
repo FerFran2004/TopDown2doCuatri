@@ -11,7 +11,7 @@ public class EnemyShootMovement : MonoBehaviour
     public int ScoreReward = 20;
 
     private int currentHealth;
-    
+
     //For movement 
     public float MoveTime;
     private float CurrentMoveTime;
@@ -28,7 +28,10 @@ public class EnemyShootMovement : MonoBehaviour
 
     //For Players´ Score
     public GameObject PlayerScore;
-    
+
+    //For Players´ Combo
+    public GameObject Combo;
+
     void Start()
     {
         currentHealth= Health;
@@ -43,6 +46,8 @@ public class EnemyShootMovement : MonoBehaviour
         {
             PlayerScore = GameObject.FindGameObjectWithTag("Player");
             PlayerScore.GetComponent<Score>().ScoreCount(ScoreReward);
+            Combo = GameObject.FindGameObjectWithTag("Player");
+            Combo.GetComponent<Score>().Dead();
             Destroy(gameObject);
 
         }

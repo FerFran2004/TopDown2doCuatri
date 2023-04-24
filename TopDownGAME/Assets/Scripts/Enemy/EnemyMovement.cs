@@ -40,19 +40,16 @@ public class EnemyMovement : MonoBehaviour
     void Start()
     {
         currentHealth = Health;
-        
-       
     }
 
     public void TakeDamage(int damage)
     {
 
-        Physics.SyncTransforms();
+        //Physics.SyncTransforms();
         currentHealth -= damage;
 
         if (currentHealth < 0)
         {
-            Debug.Log("The enemy is dead");
             PlayerScore = GameObject.FindGameObjectWithTag("Player");
             PlayerScore.GetComponent<Score>().ScoreCount(ScoreReward);
             PlayerGuns = GameObject.FindGameObjectsWithTag("Gun");
