@@ -12,7 +12,6 @@ public class PlayerStats : MonoBehaviour
     public Text HealthText;
     public int CurrentHealth;
     public HealthBar healthBar;
-    public Rigidbody2D rbPlayer;
     public Gun weapon;
 
     [SerializeField] private GameObject RedEnemy;
@@ -22,7 +21,6 @@ public class PlayerStats : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        rbPlayer = GetComponent<Rigidbody2D>();
         CurrentHealth = Health;
         healthBar.SetMaxHealth(Health);
     }
@@ -30,102 +28,58 @@ public class PlayerStats : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //Position to PlayerMovement
+        //Position to Parent
         GameObject Position = GameObject.Find("Player");
         transform.position = Position.transform.position;
-        
-        
-        //Look at Mouse
-        var MouseDir = Input.mousePosition - Camera.main.WorldToScreenPoint(transform.position);
-        var Angle = Mathf.Atan2(MouseDir.x, MouseDir.y) * Mathf.Rad2Deg * angleOffset;
-        transform.rotation = Quaternion.AngleAxis(Angle, Vector3.forward);
 
-        HealthText.text = CurrentHealth.ToString() + "%";
+        //Look at Mouse
+        Vector3 mousePos = Input.mousePosition; 
+        mousePos = Camera.main.ScreenToWorldPoint(mousePos);  
+
+        Vector2 direction = new Vector2(mousePos.x - transform.position.x, mousePos.y - transform.position.y); 
+        transform.up = direction; 
+
         if (Input.GetKeyDown(KeyCode.K))
         {
-            CurrentHealth = 0;
+            CurrentHealth -= 999;
         }
 
-        if (CurrentHealth == 0)
+        if (CurrentHealth <= 0)
         {
+            gameObject.GetComponent<Score>().FinalCombo();
+            CurrentHealth = 0;
             Destroy(gameObject);
         }
 
-
-
+        HealthText.text = CurrentHealth.ToString() + "%";
 
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
 
     {
-        if (collision.gameObject.tag == "Wall")
-        {
-            Debug.Log("PARED"); //Lo detecta, pero no se detiene 
-            
-        }
-
 
         if (collision.gameObject.tag == "EnemiesShoot")
         {
-            ShootEnemy = GameObject.Find("EnemyShoot");
-            int BlueDamage = ShootEnemy.GetComponent<EnemyShootMovement>().BlueTouchDamage;
-            CurrentHealth -= BlueDamage;
-            healthBar.HealthDisplay(CurrentHealth);
-            if (CurrentHealth <= 0) // Feature de last stande?: (Health < 0) Hace que tenga 0 pero aun asi se pueda mover, pero se muere al siguente golpe
-            {
-                Destroy(gameObject);
-            }
+            int BlueDamage = collision.gameObject.GetComponent<EnemyShootMovement>().BlueTouchDamage;
+            RecieveDamage(BlueDamage);   
         }
+
         if (collision.gameObject.tag == "Enemies")
         {
-            RedEnemy = GameObject.Find("Enemy");
-            int RedDamage = RedEnemy.GetComponent<EnemyMovement>().TouchDamage;
-            CurrentHealth -= RedDamage;
-            healthBar.HealthDisplay(CurrentHealth);
-            if (CurrentHealth <= 0)
-            {
-                Destroy(gameObject);
-
-            }
-
-        }
-//        if (collision.gameObject.tag == "EnemyShootBullet")
-//        {
-//            EnemyShootBullet = GameObject.FindWithTag("EnemyShootBullet");
-//            int EnemyShootBulletDamage = EnemyShootBullet.GetComponent<EnemyShootBullet>().Damage;
-//            CurrentHealth -= EnemyShootBulletDamage;
-//            healthBar.HealthDisplay(CurrentHealth);
-//            if (CurrentHealth <= 0)
-//            {
-//                Destroy(gameObject);
-//
-//            }
-//
-//        }
-//
-    }
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-
-        if (collision.gameObject.tag == "EnemyShootBullet")
-        {
-            EnemyShootBullet = GameObject.FindWithTag("EnemyShootBullet");
-            int EnemyShootBulletDamage = EnemyShootBullet.GetComponent<EnemyShootBullet>().Damage;
-            CurrentHealth -= EnemyShootBulletDamage;
-            healthBar.HealthDisplay(CurrentHealth);
-            GameObject Me = GameObject.FindWithTag("Player");
-            Me.GetComponent<Score>().ResetCombo();
-            if (CurrentHealth <= 0)
-            {
-                Destroy(gameObject);
-
-            }
-
+            int RedDamage = collision.gameObject.GetComponent<EnemyMovement>().TouchDamage;
+            RecieveDamage(RedDamage);
         }
 
     }
 
+    public void RecieveDamage(int dmg)
+    { 
+        CurrentHealth -= dmg;
+        healthBar.HealthDisplay(CurrentHealth);
+        gameObject.GetComponent<Score>().ResetCombo();
+
+    }
 
 }
 

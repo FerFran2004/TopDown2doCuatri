@@ -35,13 +35,13 @@ public class EnemySpawner : MonoBehaviour
         EnemyShootCount = GameObject.FindGameObjectsWithTag("EnemiesShoot");
         int EnemyShootTotal = EnemyShootCount.Length;
         
+        //Red Enemies
         if (EnemyTotal < EnemiesTotalLimit)
         {
             if (EnemySpawnRate <= 0)
             {
                 Instantiate(EnemyPrefab, transform.position, Quaternion.identity);
                 EnemySpawnRate = Random.Range(1, 5f);
-                // Debug.Log("Enemy Spawn" + EnemySpawnRate);
             }
             if (EnemySpawnRate > 0)
             {
@@ -49,13 +49,8 @@ public class EnemySpawner : MonoBehaviour
             }
 
         }
-        else
-        {
-
-
-        }
         
-
+        //Blue Shoot Enemies
         if (EnemyShootTotal < EnemiesShootTotalLimit)
         {
             if (EnemyShootSpawnRate <= 0)
@@ -63,21 +58,14 @@ public class EnemySpawner : MonoBehaviour
 
                 Instantiate(EnemyShootPrefab, transform.position, Quaternion.identity);
                 EnemyShootSpawnRate = Random.Range(1, 10f);
-              //  Debug.Log("Shoot Spawn" + EnemyShootSpawnRate);
             }
             if (EnemyShootSpawnRate > 0)
             {
                 EnemyShootSpawnRate -= Time.deltaTime;
             }
 
-
-        }
-        else
-        {
-
         }
 
     }
-
 
 }

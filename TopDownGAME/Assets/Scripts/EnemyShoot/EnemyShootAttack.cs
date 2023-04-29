@@ -34,13 +34,5 @@ public class EnemyShootAttack : MonoBehaviour
                 ReadyToFire += Time.deltaTime;
             }
         }
-        else
-        {
-
-        }
-
-
-    }
-    
-    
+    } 
 }

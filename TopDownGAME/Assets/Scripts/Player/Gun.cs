@@ -12,21 +12,22 @@ public class Gun : MonoBehaviour
     public Text EnergyText;
     public float FireRate = 0.5f;
 
+    private Color DefaultColor; 
+
 
     private float ReadytoFire = 0;
 
 
     void Start()
     {
-        
+
     }
 
     
     void Update()
     {
-       EnergyText.text = "ENERGY: " + Energy.ToString();
-
-       if (FireRate == 0) //Si el arma es automatica, no hay retardo entre bala y bala...
+       EnergyText.text =  Energy.ToString();
+       if (FireRate == 0) //Si el arma es automatica; no hay retardo entre bala y bala...
         {
 
             if (Input.GetKey(KeyCode.Mouse1))
@@ -44,7 +45,6 @@ public class Gun : MonoBehaviour
                     
                 }
 
-
             }
 
        }
@@ -54,7 +54,7 @@ public class Gun : MonoBehaviour
 
         }
 
-       else //Si existe un retardo entre bala y bala...
+       else //Si no es automatica...
        {
 
             if (Input.GetKey(KeyCode.Mouse1) && ReadytoFire > FireRate)
@@ -72,10 +72,8 @@ public class Gun : MonoBehaviour
                     Debug.Log("No Energy: " + Energy);
 
                 }
-
             }
         }
-
 
     }
 

@@ -8,9 +8,11 @@ public class Score : MonoBehaviour
     //Score Display
     public Text TotalScoreDisplay;
     private int TotalScoreCount;
+    private int HighestCombo;
 
     //Combo System and Display
-    public Text ComboDisplay;
+    public Text CurrentComboDisplay;
+    public Text HighestComboDisplay;
     private int ComboMultiplier;
     private bool DeadCheck;
 
@@ -23,17 +25,16 @@ public class Score : MonoBehaviour
 
         TotalScoreDisplay.text = TotalScoreCount.ToString();
 
-        ComboDisplay.text = ComboMultiplier.ToString() + " X";
+        CurrentComboDisplay.text = ComboMultiplier.ToString() + " X";
+
+        HighestComboDisplay.text = "HIGHEST: " + HighestCombo.ToString() + " X";
 
         if (DeadCheck == true)
         {
             ComboMultiplier += 1;
             DeadCheck = false;
         }
-        else
-        {
 
-        }
     }
 
     public void ScoreCount(int points)
@@ -46,16 +47,21 @@ public class Score : MonoBehaviour
     }
     public void ResetCombo()
     {
-        Debug.Log("RESETING");
         if (ComboMultiplier != 0)
         {
-            TotalScoreCount = ComboMultiplier * TotalScoreCount;
+            if (ComboMultiplier > HighestCombo) 
+            {
+                HighestCombo = ComboMultiplier; 
+            }
             ComboMultiplier = 0;
         }
-        else
-        {
-
-        }
         
+    }
+    public void FinalCombo()
+    {
+        ResetCombo();      
+        int FinalScoreDisplay = TotalScoreCount * HighestCombo;
+        TotalScoreDisplay.text = FinalScoreDisplay.ToString();
+        HighestCombo = 0;
     }
 }

@@ -16,11 +16,9 @@ public class EnemyShootBullet : MonoBehaviour
         EnemySBullet_rg= GetComponent<Rigidbody2D>();
         Player = GameObject.FindGameObjectWithTag("Player");
         
-        Vector3 direction = Player.transform.position - transform.position;
+        Vector3 direction = Player.transform.position - transform.position; //Donde disparar en base a player position
         EnemySBullet_rg.velocity = new Vector2(direction.x, direction.y).normalized * Force;
     }
-
-    
     void Update()
     {
         
@@ -38,7 +36,7 @@ public class EnemyShootBullet : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
-            Debug.Log(gameObject.layer);
+            collision.gameObject.GetComponent<PlayerStats>().RecieveDamage(Damage);
             Destroy(gameObject);
         }
 

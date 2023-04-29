@@ -11,11 +11,11 @@ public class PlayerMovement : MonoBehaviour
 
 
     public float DashSpeed;
-    public float DashTime; //Length
+    public float DashTime; 
     public float DashCooldown;
 
     private float DashCounter;
-    private float DashCooldownCounter;
+    private float DashCooldownCounter; //Si se quiere cooldown, activar este 
 
     // Start is called before the first frame update
     void Start()
@@ -26,7 +26,15 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (gameObject.transform.Find("RealPlayer") == null)
+        {
+            Destroy(gameObject);
+            
+        }
+        else
+        {
+            
+        }
 
         //Movement Keys
         if (DashCounter <= 0)
@@ -34,37 +42,36 @@ public class PlayerMovement : MonoBehaviour
             Direction = Vector3.zero;
             if (Input.GetKey(KeyCode.W))
             {
-                Direction += new Vector3(0f, 1f, 0f).normalized;
+                Direction += new Vector3(0f, 1f, 0f);
             }
 
             if (Input.GetKey(KeyCode.D))
             {
-                Direction += new Vector3(1f, 0f, 0f).normalized;
+                Direction += new Vector3(1f, 0f, 0f);
 
             }
 
             if (Input.GetKey(KeyCode.A))
             {
-                Direction += new Vector3(-1f, 0f, 0f).normalized;
+                Direction += new Vector3(-1f, 0f, 0f);
 
             }
 
             if (Input.GetKey(KeyCode.S))
             {
-                Direction += new Vector3(0f, -1f, 0f).normalized;
+                Direction += new Vector3(0f, -1f, 0f);
 
             }
         }
 
-        transform.position += Direction * CurrentSpeed * Time.deltaTime;
+        transform.position += Direction.normalized * CurrentSpeed * Time.deltaTime;
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            if (DashCooldownCounter <= 0 && DashCounter <= 0) //Si los contadores estan en 0...
+            if (DashCounter <= 0) //&& DashCooldownCounter <= 0
             {
-                CurrentSpeed = DashSpeed; //Nueva velocidad mientras dure el dash
-                DashCounter = DashTime; //El contador se vuelve el tiempo del Dash
-                //gameObject.transform.Find("Character/Ship");
-                gameObject.transform.GetChild(0).gameObject.layer = 8; //Por numero en la jerarquia
+                CurrentSpeed = DashSpeed; 
+                DashCounter = DashTime; 
+                gameObject.transform.GetChild(0).gameObject.layer = 8; 
             }
         }
         if (DashCounter > 0)
@@ -74,7 +81,7 @@ public class PlayerMovement : MonoBehaviour
             if (DashCounter <= 0)
             {
                 CurrentSpeed = Speed;
-                DashCooldownCounter = DashCooldown; //Se resetean la velocidad
+               // DashCooldownCounter = DashCooldown; 
                 gameObject.transform.GetChild(0).gameObject.layer = 3;
             }
         }
@@ -82,9 +89,12 @@ public class PlayerMovement : MonoBehaviour
         {
 
         }
-        if (DashCooldownCounter > 0)
-        {
-            DashCooldownCounter -= Time.deltaTime; //Se va restando poco a poco
-        }
+        //Si se quiere cooldown, activar este 
+        //if (DashCooldownCounter > 0)      
+        //{
+        //    DashCooldownCounter -= Time.deltaTime; 
+        //}
+
+
     }
 }

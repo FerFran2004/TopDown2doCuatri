@@ -24,7 +24,10 @@ public class EnemyShootMovement : MonoBehaviour
     Vector3 Direction;
 
     
-    private GameObject PlayerBullet;
+    // To change Sprite Color on Hit
+    SpriteRenderer  SpriteRender;
+    Color NormalColor;
+    Color OnHitColor;
 
     //For Players´ Score
     public GameObject PlayerScore;
@@ -34,12 +37,14 @@ public class EnemyShootMovement : MonoBehaviour
 
     void Start()
     {
-        currentHealth= Health;
-        PlayerBullet = GameObject.Find("Bullet");
+        SpriteRender = GetComponent<SpriteRenderer>();
+        NormalColor = new Color(0, 0.57f, 0.79f, 1);
+        OnHitColor = Color.white; //CANT USE RIGHT NOW 
+        SpriteRender.color = NormalColor;
+        currentHealth = Health;
     }
     public void TakeDamage(int damage)
     {
-        Physics.SyncTransforms();
         currentHealth -= damage;
 
         if (currentHealth < 0)
@@ -49,13 +54,12 @@ public class EnemyShootMovement : MonoBehaviour
             Combo = GameObject.FindGameObjectWithTag("Player");
             Combo.GetComponent<Score>().Dead();
             Destroy(gameObject);
-
         }
     }
 
     void Update()
     {
-       
+
         //Changing Direction a certain time period
         if (MoveTime <= 0)
         {
@@ -91,16 +95,8 @@ public class EnemyShootMovement : MonoBehaviour
          {
              RandomDirX *= -1;
              RandomDirY *= -1;
+            
          }
-        //if (collision.gameObject.tag == "Player")
-        //{
-        //    gameObject.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
-        //}
-        //if (collision.gameObject.tag == "PlayerBullet")
-        //{
-        //    gameObject.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
-        //
-        //}
 
     }
 

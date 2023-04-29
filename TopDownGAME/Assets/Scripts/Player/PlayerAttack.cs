@@ -8,8 +8,8 @@ public class PlayerAttack : MonoBehaviour
     public float StartAttackTime;
     public Transform AttackPos;
 
-    public LayerMask EnemyFinder; //Para detectar enemigos dentro del rango
-    public float AttackRange = 0.5f;
+    public LayerMask EnemyFinder; 
+    public float AttackRange = 0.5f; 
     public int Damage = 40;
 
     void Start()
@@ -21,8 +21,6 @@ public class PlayerAttack : MonoBehaviour
     void Update()
     {
 
-        Physics.SyncTransforms();
-
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
             AttackTime = StartAttackTime;
@@ -31,7 +29,6 @@ public class PlayerAttack : MonoBehaviour
             foreach(Collider2D Enemy in DamageEnemies)
             {
                 Enemy.GetComponent<EnemyMovement>().TakeDamage(Damage);
-                //Debug.Log("ATTACKED: " + Enemy.name);
             }
         }      
         
@@ -40,9 +37,6 @@ public class PlayerAttack : MonoBehaviour
 
     private void OnDrawGizmosSelected()
     {
-        if (AttackPos == null)
-            return;
-
         Gizmos.color = Color.blue;
         Gizmos.DrawWireSphere(AttackPos.position, AttackRange);
     }

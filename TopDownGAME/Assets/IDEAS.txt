@@ -1,5 +1,5 @@
-COMBO SYSTEM
-
+COMBO SYSTEM:
+Hacer mas con el combo. Como multiplicar el poder y velocidad del jugador entre mas avance, pero el cap de enemigos azules sube y los rojos bajan
 
 
 CAMBIAR MECANICAS:

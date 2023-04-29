@@ -370,7 +370,6 @@
 -r:"Library/Bee/artifacts/1900b0aEDbg.dag/UnityEditor.UI.ref.dll"
 -r:"Library/Bee/artifacts/1900b0aEDbg.dag/UnityEngine.UI.ref.dll"
 "Assets/Scripts/Enemy/EnemyMovement.cs"
-"Assets/Scripts/Enemy/TEST.cs"
 "Assets/Scripts/EnemyShoot/EnemyShootAttack.cs"
 "Assets/Scripts/EnemyShoot/EnemyShootBullet.cs"
 "Assets/Scripts/EnemyShoot/EnemyShootMovement.cs"

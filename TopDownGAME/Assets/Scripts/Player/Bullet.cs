@@ -34,7 +34,7 @@ public class Bullet : MonoBehaviour
         if (collision.gameObject.tag == "EnemiesShoot")
         {
             collision.gameObject.GetComponent<EnemyShootMovement>().TakeDamage(Damage);
-            Debug.Log("Damage");
+            //Debug.Log("Damage");
             Destroy(gameObject);
 
         }

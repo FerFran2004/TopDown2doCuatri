@@ -45,7 +45,6 @@ public class EnemyMovement : MonoBehaviour
     public void TakeDamage(int damage)
     {
 
-        //Physics.SyncTransforms();
         currentHealth -= damage;
 
         if (currentHealth < 0)
